@@ -1,50 +1,46 @@
 import signal
 
-from exceptions import TimeoutException
+from .exceptions import TimeoutException
 
 
 def timeout_handler(signum: int, frame):
     raise TimeoutException("Timeout occoured")
 
 
-def timeout(**kwargs):
-    timeout_limit: int = kwargs.get("timeout_limit", 10)
-    retry_limit: int = kwargs.get("retry_limit", 1)
+class Timeout:
+    def __init__(self, timeout_limit: int = 10, retry_limit: int = 0, **kwargs) -> None:
+        self.__timeout_limit: int = timeout_limit
+        self.__retry_limit: int = retry_limit
+        self.__timeout_exception = kwargs.get("timeout_exception", TimeoutException)
+        self.__timeout_handler: callable = kwargs.get(
+            "timeout_handler", self.__timeout_handler
+        )
 
-    def timeout_decorator(func):
-        def wrapper(*args, **kwargs):
-            nonlocal timeout_limit
-            nonlocal retry_limit
+        if not issubclass(self.__timeout_exception, Exception):
+            raise TypeError("timeout_exception must be a subclass of Exception")
 
-            print(f"TIMEOUT_LIMIT: {timeout_limit}")
+    def __timeout_handler(self, signum: int, frame):
+        raise self.__timeout_exception("Timeout occoured")
 
-            signal.signal(signal.SIGALRM, timeout_handler)
-            signal.alarm(timeout_limit)
+    def bind(self, **kwargs):
+        def timeout_decorator(func):
+            def wrapper(*args, **kwargs):
+                nonlocal self
 
-            retry: int = 0
+                signal.signal(signal.SIGALRM, self.__timeout_handler)
+                signal.alarm(self.__timeout_limit)
 
-            while retry < retry_limit:
-                try:
-                    return func(*args, **kwargs)
+                retry: int = 0
 
-                except TimeoutException:
-                    retry += 1
-                    signal.alarm(timeout_limit)
+                while retry <= self.__retry_limit:
+                    try:
+                        return func(*args, **kwargs)
 
-        signal.alarm(0)
-        return wrapper
+                    except self.__timeout_exception:
+                        retry += 1
+                        signal.alarm(self.__timeout_limit)
 
-    return timeout_decorator
+            signal.alarm(0)
+            return wrapper
 
-
-if __name__ == "__main__":
-
-    @timeout(timeout_limit=2, retry_limit=3)
-    def example(*args):
-        import time
-
-        ctr = 0
-        while ctr < 10:
-            print(f"{ctr=}")
-            ctr += 1
-            time.sleep(1)
+        return timeout_decorator
