@@ -104,10 +104,10 @@ pip3 install python-timeout
 ```
 timeout_limit: The time limit for the function to run (in seconds). Default is 10 seconds.
 
-retry_count: The number of times to retry the function in case of timeout. Deafult is 0.
+retry_limit: The number of times to retry the function in case of timeout. Deafult is 0.
 
 *Example*
-timeout_ = Timeout(timeout_limit=5, retry_count=2)
+timeout_ = Timeout(timeout_limit=5, retry_limit=2)
 
 
 ** Advanced **
@@ -119,7 +119,7 @@ timeout_exception: The exception to raise in case of timeout. This must be a sub
 timeout_handler: The function to call in case of timeout. This must raise the exception specified in timeout_exception.
 
 *Example*
-timeout_ = Timeout(timeout_limit=5, retry_count=2, timeout_exception=MyCustomException, timeout_handler=custom_timeout_handler)
+timeout_ = Timeout(timeout_limit=5, retry_limit=2, timeout_exception=MyCustomException, timeout_handler=custom_timeout_handler)
 ```
 
 - Use the `bind` method to bind the timeout decorator to the function you want to set timeout for. This returns a new function with the timeout decorator applied.
@@ -131,7 +131,7 @@ Example:
 from libtimeout import Timeout
 
 
-timeout_ = Timeout(timeout_limit=5, retry_count=2)
+timeout_ = Timeout(timeout_limit=5, retry_limit=2)
 
 @timeout_.bind()
 def my_function(a, b):
