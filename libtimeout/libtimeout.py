@@ -1,4 +1,5 @@
 import signal
+from functools import wraps
 
 from .exceptions import TimeoutException
 
@@ -35,6 +36,7 @@ class Timeout:
 
     def bind(self, **kwargs):
         def timeout_decorator(func):
+            @wraps(func)
             def wrapper(*args, **kwargs):
                 nonlocal self
 
