@@ -5,7 +5,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/radioactive11/python-timeout">
-    <!-- <img src="images/logo.png" alt="Logo" width="80" height="80"> -->
+    <img src="./.github/banner.png" alt="Logo" width="80" height="80">
   </a>
 
   <h3 align="center">Python Timeout</h3>
@@ -55,7 +55,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+<img src="./.github/banner.png">
 
 This is a Python package that provides decorators for adding timeout and retry functionality to your functions. With just one line of code, you can easily set a timeout for your function and choose to retry it any number of times in case of timeout.
 
