@@ -39,6 +39,10 @@
       </ul>
     </li>
     <li><a href="#usage">Usage</a></li>
+    <ul>
+        <li><a href="#basic-usage">Basic Usage</a></li>
+        <li><a href="#advanced-usage">Advanced Usage</a></li>
+    </ul>
     <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
@@ -101,32 +105,17 @@ pip3 install python-timeout
 - To set timeout for a function, import the module using `from libtimeout import Timeout`.
 
 - Create a Timeout object class with the following parameters:
-```
-timeout_limit: The time limit for the function to run (in seconds). Default is 10 seconds.
 
-retry_limit: The number of times to retry the function in case of timeout. Deafult is 0.
+        `timeout_limit`: The time limit for the function to run (in seconds). Default is 10 seconds.
 
-*Example*
-timeout_ = Timeout(timeout_limit=5, retry_limit=2)
-
-
-** Advanced **
-
-By default, the timeout decorator raises a TimeoutError in case of timeout. You can change this behavior by passing the following parameters:
-
-timeout_exception: The exception to raise in case of timeout. This must be a subclass of Exception.
-
-timeout_handler: The function to call in case of timeout. This must raise the exception specified in timeout_exception.
-
-*Example*
-timeout_ = Timeout(timeout_limit=5, retry_limit=2, timeout_exception=MyCustomException, timeout_handler=custom_timeout_handler)
-```
+        `retry_limit`: The number of times to retry the function in case of timeout. Deafult is 0.
 
 - Use the `bind` method to bind the timeout decorator to the function you want to set timeout for. This returns a new function with the timeout decorator applied.
 
 - Call the new function with the same parameters as the original function.
 
-Example:
+*Example*
+
 ```python
 from libtimeout import Timeout
 
@@ -141,6 +130,38 @@ def my_function(a, b):
 my_function(1, 2)
 
 ```
+<br>
+
+### Advanced Usage
+
+By default, the timeout decorator raises a TimeoutError in case of timeout. You can change this behavior by passing the following parameters:
+
+timeout_exception: The exception to raise in case of timeout. This must be a subclass of Exception.
+
+timeout_handler: The function to call in case of timeout. This must raise the exception specified in timeout_exception.
+
+*Example*
+
+```python
+from libtimeout import Timeout
+
+class CustomException(Exception):
+    pass
+
+def custom_handler():
+    # do something like deleting partial downloaded files etc.
+    raise CustomException("Custom exception raised")
+
+timeout_ = Timeout(timeout_limit=60, retry_limit=2, timeout_exception=CustomException, timeout_handler=custom_handler)
+
+@timeout_.bind()
+def download_large_file(url):
+    # Download file
+    return
+
+```
+
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
