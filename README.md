@@ -4,10 +4,6 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/radioactive11/python-timeout">
-    <img src="./.github/banner.png" alt="Logo" width="80" height="80">
-  </a>
-
   <h3 align="center">Python Timeout</h3>
 
   <p align="center">
