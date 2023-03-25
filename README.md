@@ -1,4 +1,4 @@
-<!-- Improved compatibility of back to top link: See: https://github.com/radioactive11/python-timeout/pull/73 -->
+<!-- Improved compatibility of back to top link: See: https://github.com/radioactive11/pyrtout/pull/73 -->
 <a name="readme-top"></a>
 
 <!-- PROJECT LOGO -->
@@ -9,12 +9,12 @@
   <p align="center">
     Timeout & retry functions in Python with a single line of code
     <br />
-    <a href="https://github.com/radioactive11/python-timeout"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/radioactive11/pyrtout"><strong>Explore the docs »</strong></a>
     <br />
     ·
-    <a href="https://github.com/radioactive11/python-timeout/issues">Report Bug</a>
+    <a href="https://github.com/radioactive11/pyrtout/issues">Report Bug</a>
     ·
-    <a href="https://github.com/radioactive11/python-timeout/issues">Request Feature</a>
+    <a href="https://github.com/radioactive11/pyrtout/issues">Request Feature</a>
     ·
   </p>
 </div>
@@ -72,7 +72,7 @@ To get a local copy up and running follow these simple example steps.
 1. Clone the repository
 
 ```sh
-git clone github.com/radioactive11/python-timeout
+git clone github.com/radioactive11/pyrtout
 ```
 
 2. Run the following command to install the project
@@ -86,7 +86,7 @@ python3 setup.py install
 To install the function using pip, run
 
 ```sh
-pip3 install python-timeout
+pip3 install pyrtout
 ```
 
 
@@ -170,7 +170,7 @@ def download_large_file(url):
 - [] Add multi-threading support
 
 
-See the [open issues](https://github.com/radioactive11/python-timeout/issues) for a full list of proposed features (and known issues).
+See the [open issues](https://github.com/radioactive11/pyrtout/issues) for a full list of proposed features (and known issues).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -208,6 +208,6 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 Arijit Roy - [@_radioactive11_](https://twitter.com/_radioactive11_) - roy.arijit@icloud.com
 
-Project Link: [https://github.com/your_username/repo_namehttps://github.com/radioactive11/python-timeout](https://github.com/radioactive11/python-timeout)
+Project Link: [https://github.com/your_username/repo_namehttps://github.com/radioactive11/pyrtout](https://github.com/radioactive11/pyrtout)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
