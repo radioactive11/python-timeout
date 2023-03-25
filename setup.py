@@ -9,7 +9,7 @@ with open(os.path.join(here, "README.md"), encoding="utf-8") as f:
     long_description = f.read()
 
 
-VERSION = "1.0.4"
+VERSION = "1.0.5"
 DESCRIPTION = "Timeout & retry functions in Python with a single line of code"
 
 # Setting up
