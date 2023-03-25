@@ -1,21 +1,25 @@
 from setuptools import setup, find_packages
 
-VERSION = "1.0.0"
-DESCRIPTION = "Timeout & retry functions in Python with a single line of code"
-with open("README.md", encoding="utf-8") as f:
-    LONG_DESCRIPTION = f.read()
+import os
 
+here = os.path.abspath(os.path.dirname(__file__))
+
+# Getting long description from the README file
+with open(os.path.join(here, "README.md"), encoding="utf-8") as f:
+    long_description = f.read()
+
+
+VERSION = "1.0.4"
+DESCRIPTION = "Timeout & retry functions in Python with a single line of code"
+
+# Setting up
 setup(
-    name="python-timeout",
+    name="pyrtout",
     version=VERSION,
-    packages=find_packages("python-timeout", exclude=("tests",)),
-    install_requires=open("requirements.txt").readlines(),
-    author="radioactive11",
-    author_email="roy.arijit@icloud.com",
-    url="https://github.com/radioactive11/python-timeout",
+    author="Arijit Roy (radioactive11)",
+    author_email="<roy.arijit@icloud.com>",
     description=DESCRIPTION,
-    long_description=LONG_DESCRIPTION,
     long_description_content_type="text/markdown",
-    include_package_data=True,
-    keywords="python timeout retry kill signal unix",
+    long_description=long_description,
+    packages=find_packages(),
 )
